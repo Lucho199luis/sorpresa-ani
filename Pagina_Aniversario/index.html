@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mi Lugar Seguro ❤️</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <canvas id="lienzo3d"></canvas>
+
+    <div id="pantalla-inicio" class="overlay">
+        <div class="contenedor-inicio">
+            <h1 class="titulo-intro">I LOVE YOU</h1>
+            
+            <div class="contenedor-foto-portada">
+                <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=400&auto=format&fit=crop" alt="Pareja Romántica" class="foto-portada">
+            </div>
+
+            <p class="subtitulo-intro">HAZ CLIC PARA INICIAR TU SORPRESA</p>
+            <button id="boton-iniciar">INICIAR 💝</button>
+        </div>
+    </div>
+
+    <div id="burbuja-mensaje" class="pop-up-mensaje">
+        <div class="contenido-burbuja">
+            <span id="cerrar-burbuja" class="boton-cerrar">&times;</span>
+            <p id="texto-burbuja">Aquí irá tu bonita frase personalizada...</p>
+        </div>
+    </div>
+
+    <audio id="musica" src="cancion.mp3" loop></audio>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+            }
+        }
+    </script>
+    <script type="module" src="script.js"></script>
+</body>
+</html>

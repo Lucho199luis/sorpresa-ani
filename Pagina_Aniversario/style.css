@@ -1,0 +1,214 @@
+/* ==========================================================================
+   1. CONFIGURACIÓN GENERAL Y ESTILOS BASE
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' style='font-size:24px'><text y='24'>💖</text></svg>"), auto;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #02010a;
+}
+
+#lienzo3d {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* ==========================================================================
+   2. PANTALLA DE INICIO (PORTADA DE BIENVENIDA ROMÁNTICA)
+   ========================================================================== */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, #0f0c24 0%, #02010a 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.contenedor-inicio {
+    background: rgba(20, 18, 58, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 20, 147, 0.2);
+    border-radius: 25px;
+    padding: 40px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 20px rgba(255, 20, 147, 0.1);
+}
+
+.titulo-intro {
+    color: #ffffff;
+    font-size: 2.6rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+    text-shadow: 0 0 10px rgba(255, 20, 147, 0.8), 0 0 20px rgba(134, 36, 225, 0.5);
+}
+
+.contenedor-foto-portada {
+    width: 160px;
+    height: 160px;
+    margin: 0 auto 25px auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid rgba(255, 20, 147, 0.4);
+    box-shadow: 0 0 15px rgba(255, 20, 147, 0.3);
+}
+
+.foto-portada {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.subtitulo-intro {
+    color: #a5a2d6;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+#boton-iniciar {
+    background: linear-gradient(90deg, #ff1493, #8624e1);
+    color: white;
+    border: none;
+    padding: 12px 45px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    border-radius: 25px;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(255, 20, 147, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#boton-iniciar:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 20, 147, 0.6);
+}
+
+/* ==========================================================================
+   3. ETIQUETAS DE LAS ÓRBITAS Y FRASES FLOTANTES DE FONDO
+   ========================================================================== */
+#contenedor-etiquetas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.etiqueta-orbita {
+    position: absolute;
+    color: #ff529a;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    background: rgba(10, 5, 25, 0.85);
+    border: 1px solid rgba(255, 20, 147, 0.4);
+    padding: 4px 10px;
+    border-radius: 12px;
+    white-space: nowrap;
+    text-shadow: 0 0 5px rgba(255, 20, 147, 0.5);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    transition: opacity 0.2s ease; 
+}
+
+.frase-espacial {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 0.75rem;
+    font-style: italic;
+    letter-spacing: 1.5px;
+    white-space: nowrap;
+    text-shadow: 0 0 8px rgba(134, 36, 225, 0.4);
+    transition: opacity 0.3s ease;
+}
+
+/* ==========================================================================
+   4. DISEÑO DE LA BURBUJA EMERGENTE ROMÁNTICA (MENSAJES DE CLIC)
+   ========================================================================== */
+.pop-up-mensaje {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(2, 1, 10, 0.6);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.pop-up-mensaje.activo {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.contenido-burbuja {
+    background: linear-gradient(135deg, rgba(25, 15, 55, 0.9) 0%, rgba(10, 5, 25, 0.98) 100%);
+    border: 2px solid #ff1493;
+    box-shadow: 0 0 25px rgba(255, 20, 147, 0.4), inset 0 0 15px rgba(255, 20, 147, 0.1);
+    padding: 30px;
+    border-radius: 20px;
+    width: 85%;
+    max-width: 320px;
+    text-align: center;
+    position: relative;
+    transform: scale(0.7);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.pop-up-mensaje.activo .contenido-burbuja {
+    transform: scale(1);
+}
+
+#texto-burbuja {
+    color: #ffffff;
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 500;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+.boton-cerrar {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #ff529a;
+    font-size: 1.6rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.boton-cerrar:hover {
+    color: #ffffff;
+}
